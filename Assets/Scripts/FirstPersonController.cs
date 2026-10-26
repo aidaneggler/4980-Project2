@@ -29,6 +29,12 @@ public class FirstPersonController : MonoBehaviour
     {
         HandleCursor();
 
+        if (Keypad.IsUsingKeypad)
+        {
+            ApplyGravity();
+            return;
+        }
+
         if (cursorLocked)
         {
             HandleMouseLook();

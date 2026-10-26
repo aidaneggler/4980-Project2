@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,11 @@ public class FlashlightController : MonoBehaviour
     [Header("Current Light")]
     public LightType currentLight = LightType.White;
 
+    [Header("Unlocked Lights")]
+    public bool hasWhiteLight = true;
+    public bool hasUVLight = false;
+    public bool hasRedLight = false;
+
     void Start()
     {
         if (flashlight == null)
@@ -29,7 +35,7 @@ public class FlashlightController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current == null)
+        if (Keyboard.current == null || Keypad.IsUsingKeypad)
             return;
 
         // Toggle flashlight
@@ -39,24 +45,49 @@ public class FlashlightController : MonoBehaviour
             UpdateLight();
         }
 
-        // Switch wavelengths
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        // Switch to white light
+        if (Keyboard.current.digit1Key.wasPressedThisFrame &&
+            hasWhiteLight)
         {
             currentLight = LightType.White;
             UpdateLight();
         }
 
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        // Switch to UV light
+        if (Keyboard.current.digit2Key.wasPressedThisFrame &&
+            hasUVLight)
         {
             currentLight = LightType.UV;
             UpdateLight();
         }
 
-        if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        // Switch to red light
+        if (Keyboard.current.digit3Key.wasPressedThisFrame &&
+            hasRedLight)
         {
             currentLight = LightType.Red;
             UpdateLight();
         }
+    }
+
+    public void UnlockLight(LightType lightType)
+    {
+        switch (lightType)
+        {
+            case LightType.White:
+                hasWhiteLight = true;
+                break;
+
+            case LightType.UV:
+                hasUVLight = true;
+                break;
+
+            case LightType.Red:
+                hasRedLight = true;
+                break;
+        }
+
+        Debug.Log("Unlocked flashlight: " + lightType);
     }
 
     void UpdateLight()

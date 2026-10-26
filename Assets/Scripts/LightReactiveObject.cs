@@ -14,6 +14,8 @@ public class LightReactiveObject : MonoBehaviour
     private Renderer[] objectRenderers;
     private Collider objectCollider;
 
+    public bool IsRevealed { get; private set; }
+
     void Start()
     {
         if (flashlightController == null)
@@ -118,6 +120,8 @@ public class LightReactiveObject : MonoBehaviour
 
     void SetVisible(bool visible)
     {
+        IsRevealed = visible;
+
         foreach (Renderer renderer in objectRenderers)
         {
             renderer.enabled = visible;
