@@ -1166,8 +1166,8 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5
-  m_Range: 15
+  m_Intensity: 10
+  m_Range: 30
   m_SpotAngle: 34.560524
   m_InnerSpotAngle: 26.36259
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -2789,7 +2789,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: f51d015c4b5c744b283d44a72bda82b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
