@@ -12,9 +12,7 @@ public class ExitDoor : MonoBehaviour
             return;
 
         isUnlocked = true;
-
         Debug.Log("Exit door unlocked!");
-
         gameObject.SetActive(false);
     }
 }

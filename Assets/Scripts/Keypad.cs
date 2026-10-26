@@ -15,8 +15,6 @@ public class Keypad : MonoBehaviour
     private bool isOpen = false;
     private bool isUnlocked = false;
     private string message = "";
-
-    // Used by other scripts to pause controls
     public static bool IsUsingKeypad { get; private set; }
 
     void Update()
@@ -25,15 +23,12 @@ public class Keypad : MonoBehaviour
             return;
 
         Keyboard keyboard = Keyboard.current;
-
-        // Close keypad
         if (keyboard.fKey.wasPressedThisFrame)
         {
             CloseKeypad();
             return;
         }
 
-        // Enter numbers
         if (keyboard.digit0Key.wasPressedThisFrame)
             AddDigit("0");
 
@@ -64,7 +59,6 @@ public class Keypad : MonoBehaviour
         if (keyboard.digit9Key.wasPressedThisFrame)
             AddDigit("9");
 
-        // Delete last digit
         if (keyboard.backspaceKey.wasPressedThisFrame)
         {
             if (enteredCode.Length > 0)
@@ -74,11 +68,9 @@ public class Keypad : MonoBehaviour
                     enteredCode.Length - 1
                 );
             }
-
             message = "";
         }
 
-        // Submit code
         if (keyboard.enterKey.wasPressedThisFrame ||
             keyboard.numpadEnterKey.wasPressedThisFrame)
         {
@@ -93,7 +85,6 @@ public class Keypad : MonoBehaviour
             Debug.Log("Keypad already unlocked!");
             return;
         }
-
         isOpen = true;
         IsUsingKeypad = true;
         enteredCode = "";
@@ -120,14 +111,12 @@ public class Keypad : MonoBehaviour
         if (enteredCode == correctCode)
         {
             isUnlocked = true;
-
             Debug.Log("Correct code! Cabinet unlocked.");
 
             if (cabinetDoor != null)
             {
                 cabinetDoor.SetActive(false);
             }
-
             CloseKeypad();
         }
         else

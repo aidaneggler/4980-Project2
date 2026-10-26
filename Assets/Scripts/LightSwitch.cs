@@ -14,9 +14,7 @@ public class LightSwitch : MonoBehaviour
             return;
 
         activated = true;
-
         Debug.Log("Hidden switch activated!");
-
         if (exitDoor != null)
         {
             exitDoor.UnlockDoor();

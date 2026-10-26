@@ -38,14 +38,12 @@ public class FlashlightController : MonoBehaviour
         if (Keyboard.current == null || Keypad.IsUsingKeypad)
             return;
 
-        // Toggle flashlight
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             flashlightOn = !flashlightOn;
             UpdateLight();
         }
 
-        // Switch to white light
         if (Keyboard.current.digit1Key.wasPressedThisFrame &&
             hasWhiteLight)
         {
@@ -53,15 +51,12 @@ public class FlashlightController : MonoBehaviour
             UpdateLight();
         }
 
-        // Switch to UV light
         if (Keyboard.current.digit2Key.wasPressedThisFrame &&
             hasUVLight)
         {
             currentLight = LightType.UV;
             UpdateLight();
         }
-
-        // Switch to red light
         if (Keyboard.current.digit3Key.wasPressedThisFrame &&
             hasRedLight)
         {

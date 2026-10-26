@@ -13,11 +13,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Keyboard.current == null)
             return;
-
-        // Don't interact with objects while using a keypad
         if (Keypad.IsUsingKeypad)
             return;
-
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             TryInteract();
@@ -68,7 +65,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 return;
             }
-
             lightSwitch.Activate();
         }
         }
