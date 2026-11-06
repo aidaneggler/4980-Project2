@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,8 +12,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Keyboard.current == null)
             return;
+
         if (Keypad.IsUsingKeypad)
             return;
+
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             TryInteract();
@@ -35,7 +36,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
-
             FlashlightPickup pickup =
                 hit.collider.GetComponentInParent<FlashlightPickup>();
 
@@ -44,29 +44,52 @@ public class PlayerInteraction : MonoBehaviour
                 pickup.Collect(flashlightController);
                 return;
             }
+
             Keypad keypad =
                 hit.collider.GetComponentInParent<Keypad>();
 
             if (keypad != null)
             {
                 keypad.OpenKeypad();
+                return;
+            }
+
+            RedButton redButton =
+                hit.collider.GetComponentInParent<RedButton>();
+
+            if (redButton != null)
+            {
+                LightReactiveObject reactiveObject =
+                    redButton.GetComponent<LightReactiveObject>();
+
+                if (reactiveObject != null &&
+                    reactiveObject.enabled &&
+                    !reactiveObject.IsRevealed)
+                {
+                    return;
+                }
+
+                redButton.Activate();
+                return;
             }
 
             LightSwitch lightSwitch =
-        hit.collider.GetComponentInParent<LightSwitch>();
+                hit.collider.GetComponentInParent<LightSwitch>();
 
-        if (lightSwitch != null)
-        {
-            LightReactiveObject reactiveObject =
-                lightSwitch.GetComponent<LightReactiveObject>();
-
-            if (reactiveObject != null &&
-                !reactiveObject.IsRevealed)
+            if (lightSwitch != null)
             {
+                LightReactiveObject reactiveObject =
+                    lightSwitch.GetComponent<LightReactiveObject>();
+
+                if (reactiveObject != null &&
+                    !reactiveObject.IsRevealed)
+                {
+                    return;
+                }
+
+                lightSwitch.Activate();
                 return;
             }
-            lightSwitch.Activate();
-        }
         }
     }
 }
