@@ -1,5 +1,5 @@
-
 using UnityEngine;
+using TMPro;
 
 public class LightReactiveObject : MonoBehaviour
 {
@@ -10,9 +10,15 @@ public class LightReactiveObject : MonoBehaviour
     [Header("References")]
     public FlashlightController flashlightController;
 
+    [Header("Distance Fading")]
+    public bool useDistanceFade = false;
+    public float fullVisibilityDistance = 2f;
+    public float fadeStartDistance = 8f;
+
     private Light flashlight;
     private Renderer[] objectRenderers;
     private Collider objectCollider;
+    private TMP_Text textMesh;
 
     public bool IsRevealed { get; private set; }
 
@@ -47,6 +53,7 @@ public class LightReactiveObject : MonoBehaviour
 
         objectRenderers = GetComponentsInChildren<Renderer>();
         objectCollider = GetComponent<Collider>();
+        textMesh = GetComponentInChildren<TMP_Text>();
 
         if (objectCollider == null)
         {
@@ -61,17 +68,37 @@ public class LightReactiveObject : MonoBehaviour
     void Update()
     {
         bool shouldReveal = CheckLight();
+
         SetVisible(shouldReveal);
+
+        // Adjust transparency based on distance
+        if (useDistanceFade && textMesh != null && shouldReveal)
+        {
+            float distance = Vector3.Distance(
+                flashlight.transform.position,
+                objectCollider.bounds.center
+            );
+
+            float alpha = Mathf.InverseLerp(
+                fadeStartDistance,
+                fullVisibilityDistance,
+                distance
+            );
+
+            textMesh.alpha = alpha;
+        }
     }
 
     bool CheckLight()
     {
+        // Flashlight must be on
         if (!flashlightController.flashlightOn ||
             !flashlight.enabled)
         {
             return false;
         }
 
+        // Correct wavelength required
         if (flashlightController.currentLight != requiredLight)
         {
             return false;
@@ -84,11 +111,13 @@ public class LightReactiveObject : MonoBehaviour
 
         float distance = direction.magnitude;
 
+        // Check range
         if (distance > flashlight.range || distance < 0.01f)
         {
             return false;
         }
 
+        // Check spotlight cone
         float angle = Vector3.Angle(
             flashlight.transform.forward,
             direction
@@ -99,6 +128,7 @@ public class LightReactiveObject : MonoBehaviour
             return false;
         }
 
+        // Check for obstacles
         RaycastHit hit;
 
         if (Physics.Raycast(
@@ -107,12 +137,7 @@ public class LightReactiveObject : MonoBehaviour
             out hit,
             distance + 0.1f))
         {
-            if (hit.collider != objectCollider)
-            {
-                return false;
-            }
-
-            return true;
+            return hit.collider == objectCollider;
         }
 
         return false;
@@ -125,6 +150,15 @@ public class LightReactiveObject : MonoBehaviour
         foreach (Renderer renderer in objectRenderers)
         {
             renderer.enabled = visible;
+        }
+
+        if (!visible && textMesh != null)
+        {
+            textMesh.alpha = 0f;
+        }
+        else if (visible && textMesh != null && !useDistanceFade)
+        {
+            textMesh.alpha = 1f;
         }
     }
 }
