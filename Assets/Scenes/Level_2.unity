@@ -897,7 +897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -736, y: -543}
+  m_AnchoredPosition: {x: -736, y: -411}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &399793971
@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameHUD
   flashlightText: {fileID: 1015569747}
   notificationText: {fileID: 333871245}
-  flashlightController: {fileID: 0}
+  flashlightController: {fileID: 612578514}
 --- !u!114 &507678174
 MonoBehaviour:
   m_ObjectHideFlags: 0
