@@ -12,7 +12,9 @@ public class FlashlightPickup : MonoBehaviour
             return;
 
         controller.UnlockLight(lightType);
+        GameHUD.Instance?.ShowMessage(lightType + " Flashlight picked up!");
         Debug.Log("Collected " + lightType + " flashlight!");
+        GameHUD.Instance?.ShowMessage(lightType + " Flashlight picked up!");
         Destroy(gameObject);
     }
 }

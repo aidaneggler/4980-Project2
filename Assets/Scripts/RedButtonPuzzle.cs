@@ -28,7 +28,7 @@ public class RedButtonPuzzle : MonoBehaviour
     void CompletePuzzle()
     {
         puzzleCompleted = true;
-
+        GameHUD.Instance?.ShowMessage("Exit door unlocked!");
         Debug.Log("All buttons activated! Exit unlocked!");
 
         if (exitDoor != null)

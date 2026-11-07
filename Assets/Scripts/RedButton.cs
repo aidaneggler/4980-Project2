@@ -18,21 +18,18 @@ public class RedButton : MonoBehaviour
 
     public void Activate()
     {
-        // Button can only be activated once
         if (activated)
             return;
 
         activated = true;
-
+        GameHUD.Instance?.ShowMessage("Button activated!");
         Debug.Log(gameObject.name + " activated!");
 
-        // Stop the button from hiding again
         if (reactiveObject != null)
         {
             reactiveObject.enabled = false;
         }
 
-        // Turn the button white and keep it visible
         foreach (Renderer renderer in buttonRenderers)
         {
             renderer.enabled = true;
@@ -50,7 +47,6 @@ public class RedButton : MonoBehaviour
             }
         }
 
-        // Tell puzzle manager
         if (puzzleManager != null)
         {
             puzzleManager.ButtonActivated();

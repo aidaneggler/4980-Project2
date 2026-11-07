@@ -14,6 +14,7 @@ public class LightSwitch : MonoBehaviour
             return;
 
         activated = true;
+        GameHUD.Instance?.ShowMessage("Exit Door Opened!");
         Debug.Log("Hidden switch activated!");
         if (exitDoor != null)
         {

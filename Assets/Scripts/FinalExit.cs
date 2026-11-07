@@ -39,8 +39,7 @@ public class FinalExit : MonoBehaviour
     private void ReturnToMenu()
     {
         Time.timeScale = 1f;
-
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnGUI()

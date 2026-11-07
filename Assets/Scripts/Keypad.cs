@@ -111,6 +111,9 @@ public class Keypad : MonoBehaviour
         if (enteredCode == correctCode)
         {
             isUnlocked = true;
+            GameHUD.Instance?.ShowMessage(
+        "Cabinet Door Opened!"
+        );
             Debug.Log("Correct code! Cabinet unlocked.");
 
             if (cabinetDoor != null)
