@@ -1,47 +1,21 @@
-GAME CONCEPT
+# DESIGN.txt
 
-I wanted to make a first person game that explores using different wavelengths of lights to solve a puzzle. You have to explore the environment and discover
-clues that can only be seen with certain lights. The goal is to find the information needed to solve the puzzles and escape.
+## Playtest Feedback
 
-CORE MECHANIC
+After the first playtest I made several changes to improve the game based on the feedback. One of the biggest issues was that players weren't always sure what the controls were or what they were supposed to do. I added a main menu with a controls screen. Players can also press Tab during gameplay to view the controls if they forget something.
 
-The main mechanic is switching between different wavelengths of light. The main mechanic is switching between different wavelengths of light.
-The player starts with a white flashlight which helps them see and explore the room. Other types of flashlights can be collected as they progress. 
-A UV flashlight reveals hidden writing, while a red flashlight reveals other hidden objects, such as a switch. These objects only appear when the 
-correct light is shining directly on them. Turning away, switching wavelengths, and turning the flashlight off hides them again.
+I also added a HUD that shows which flashlight the player currently has equipped. I added on-screen messages for important interactions, such as picking up a flashlight, activating a switch, or unlocking a door. These messages were only displayed in the Unity debug console. This gives players better feedback and makes it easier to understand when they've successfully done something.
 
-GAMEPLAY LOOP
+Another change was adding a small amount of ambient lighting to the rooms. The rooms were almost completely dark without a flashlight and that made navigating difficult. I wanted to keep the dark atmosphere while still allowing players to see enough of their surroundings to explore.
 
-The player explores a dark room using a flashlight, finds a new one, uses it to reveal clues and applies those clues to solve a puzzle. Solving the puzzle 
-shows a new part of the room or unlocks a new flashlight. This continues until the player can escape the room. In this prototype, the player collects the
-UV light and uses it to find the hidden code. Then they put the code into the keypad which unlocks the cabinet on the wall. From there the player gets
-the red flashlight and then they use that to find the switch that opens the exit door. The player wins by leaving the room. 
+## Exploring the Mechanic
 
-The light sources are not just tools for visibility. They determine what information the player is able to discover and interact with.
-The same room can contain different clues depending on the wavelength being used so the player has to experiment with their flashlights and 
-think about where to aim them. Instead ofcollecting keys or following a visible path, the player uses light to uncover the puzzle itself.
+The main mechanic of my game is using different wavelengths of light to reveal hidden objects and solve puzzles. I wanted to explore how this mechanic could be used in different situations rather than having every puzzle work the same way.
 
-The idea is to make players curious about their surroundings and give them the satisfaction of discovering something that was hidden in 
-plain sight. The first prototype tests whether switching wavelengths and revealing clues is understandable, interesting, and fun enough to 
-support an escape-room game.
+I expanded the game into two levels with different gameplay styles. The first level is a puzzle room where players learn how the different flashlights work. They use UV light to reveal a hidden code and red light to find a hidden switch. This level introduces the mechanics in a smaller environment.
 
-CONTROLS
+The second level is a maze that focuses more on exploration. Players must navigate the maze and find three buttons that are only visible under red light. Once all three buttons are activated, the exit opens. This makes players use the same light mechanic in a larger environment where finding the objects is part of the challenge.
 
-WASD - Move
-Mouse - Look around and aim the flashlight
-F - Turn flashlight on or off
-1 - White light
-2 - UV light (after collecting it)
-3 - Red light (after collecting it)
-E - Interact with objects and keypads; restart after escaping
-Number keys - Enter keypad code while using the keypad
-Enter - Submit keypad code
-Backspace - Delete a keypad digit
+I also added 3D models for the flashlight pickups to make the different light sources feel more like actual items that players collect.
 
-PROTOTYPE SCOPE & PLAYTESTING
-
-The prototype focuses on one room with three light types, two linked puzzles, and a win/restart loop. The environment 
-and objects are simple because the priority is testing the mechanic. During playtesting I want 
-to see whether players discover the flashlights and clues without being told where they are, understand how to use each 
-wavelength, and enjoy figuring out the escape sequence. I'll use player observations and feedback to improve clarity, 
-puzzle difficulty, and the light reveal mechanic.
+I wanted the changes to make my game easier to understand while keeping the focus on experimenting with different lights. The two levels show how the same mechanic can be used for both individual puzzles and exploration.
